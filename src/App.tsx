@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { io } from "socket.io-client";
+import Layout from "./Layout";
 
-// Vi vill vid start av appen, automatiskt ansluta till servern
 const socket = io("wss://api.leetcode.se/", {
   path: "/fos25",
 });
@@ -14,12 +14,10 @@ function App() {
   const connectionStatus = connected ? "Connected" : "Disconnected";
 
   useEffect(() => {
-    // När en anslutning har upprättats
     socket.on("connect", () => {
       setConnected(true);
     });
 
-    // När anslutningen har avslutats
     socket.on("disconnect", () => {
       setConnected(false);
     });
@@ -27,15 +25,12 @@ function App() {
     socket.on("chat_room", (data: string) => {
       console.log("Data received: ", data);
 
-      // const receivedMessage = JSON.parse(data); // Omvandlar JSON-string till objekt/array
-
       setMessages((prev) => [...prev, JSON.stringify(data)]);
 
       console.log(messages);
     });
 
     return () => {
-      // Kod som körs när komponenten avmonteras
       socket.off("connect");
       socket.off("disconnect");
       socket.off("chat_room");
@@ -52,15 +47,10 @@ function App() {
 
     socket.emit("chat_room", stringifiedMessage);
   };
-
   return (
-    <div id="messages-container">
-      <p>{connectionStatus}</p>
-
-      {messages.map((message) => (
-        <p>{message}</p>
-      ))}
-    </div>
+    <>
+      <Layout connectionStatus={connectionStatus} messages={messages}></Layout>
+    </>
   );
 }
 
