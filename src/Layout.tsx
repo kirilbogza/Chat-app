@@ -38,7 +38,7 @@ function Layout({ messages, emitEvent, userInput, setUserInput }: LayoutProps) {
               display: isSideBarOpen ? "block" : "none",
             }}
           >
-            <div className="container-chats">
+            <div className="container-chat-list">
               <p>chats</p>
               <p>________</p>
             </div>
@@ -50,6 +50,8 @@ function Layout({ messages, emitEvent, userInput, setUserInput }: LayoutProps) {
             {messages.map((message, index) => (
               <p key={index}>{message}</p>
             ))}
+          <img src="https://www.pngall.com/wp-content/uploads/5/Profile-Male-Transparent.png" alt="" />
+
           </div>
           <div className="container-input">
             <input
