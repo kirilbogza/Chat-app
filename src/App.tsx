@@ -10,6 +10,7 @@ const socket = io("wss://api.leetcode.se/", {
 function App() {
   const [connected, setConnected] = useState(false);
   const [messages, setMessages] = useState<string[]>([]);
+  const [userInput, setUserInput] = useState("");
 
   const connectionStatus = connected ? "Connected" : "Disconnected";
 
@@ -22,34 +23,32 @@ function App() {
       setConnected(false);
     });
 
-    socket.on("chat_room", (data: string) => {
-      console.log("Data received: ", data);
-
-      setMessages((prev) => [...prev, JSON.stringify(data)]);
-
-      console.log(messages);
+    socket.on("chat_everybody", (data: string) => {
+      setMessages((prev) => [...prev, data]);
     });
 
     return () => {
       socket.off("connect");
       socket.off("disconnect");
-      socket.off("chat_room");
+      socket.off("chat_everybody");
     };
   }, []);
 
   const emitEvent = () => {
-    const message = {
-      message: "Hej där",
-      sender: "Ahmad ardal",
-    };
 
-    const stringifiedMessage = JSON.stringify(message);
+    setMessages((prev) => [...prev, userInput]);
 
-    socket.emit("chat_room", stringifiedMessage);
+    socket.emit("chat_everybody", userInput);
+    setUserInput("");
   };
   return (
     <>
-      <Layout connectionStatus={connectionStatus} messages={messages}></Layout>
+      <Layout
+        messages={messages}
+        emitEvent={emitEvent}
+        userInput={userInput}
+        setUserInput={setUserInput}
+      ></Layout>
     </>
   );
 }

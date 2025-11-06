@@ -18,115 +18,138 @@ header {
 }
 
 .sidebar {
-    display: flex;
-    top: 0;
-    left: 0;
-    height: 100vh !important;
-    background-color: #d9d9d9;
-    border-right: 1px solid black;
-    transition: width 0.3s ease;
-    z-index: 100;
-    margin-top: -50px;
+  display: flex;
+  top: 0;
+  left: 0;
+  height: 100vh !important;
+  background-color: #d9d9d9;
+  border-right: 1px solid black;
+  transition: width 0.3s ease;
+  z-index: 100;
+  margin-top: -50px;
 }
 
 .button-sidebar {
-    height: 50px;
-    width: 100px;
-    background-color: white;
-    border: none;
-    border-radius: 15px;
-    font-size: 25px;
-    margin: 10px;
+  height: 50px;
+  width: 100px;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 25px;
+  margin: 10px;
 }
 
 .button-sidebar:hover {
-    height: 45px;
-    width: 95px;
-    border: 1px solid black;
-    transition: width 0.1s ease;
+  height: 45px;
+  width: 95px;
+  border: 1px solid black;
+  transition: width 0.1s ease;
 }
 
 .button-sidebar:active {
-    height: 40px;
-    width: 90px;
-    transition: width 0.1s ease;
+  height: 40px;
+  width: 90px;
+  transition: width 0.1s ease;
 }
 
 main {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-chat-list {
+  font-size: larger;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 100px;
+  margin-left: 40px;
+  padding: 20px;
 }
 
 .container-chat {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1;
-}
-
-.message {
-    height: 100px;
-    width: 100px;
-    background-color: red;
-    margin: 50px 50px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  border: 1px solid red;
+  padding: 20px;
 }
 
 .container-input {
-    width: 60%;
-    display: flex;
-    justify-content: center;
-    position: relative;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
 
 input {
-    height: 80px;
-    width: 100%;
-    margin-bottom: 150px;
-    border-radius: 20px;
-    border: none;
-    background-color: #d9d9d9;
-    font-size: larger;
-    color: black;
-    font-weight: bold;
-    padding-left: 20px;
+  height: 80px;
+  width: 100%;
+  margin-bottom: 100px;
+  border-radius: 20px;
+  border: none;
+  background-color: #d9d9d9;
+  font-size: larger;
+  color: black;
+  font-weight: bold;
+  padding-left: 20px;
 }
 
 .button-submit {
-    position: absolute;
-    right: 0;
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    background-color: #0A3B16;
-    border: none;
-    margin: 15px 30px;
-    background-size: 60%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url("assets/send.png");
+  position: absolute;
+  right: 0;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: #0a3b16;
+  border: none;
+  margin: 15px 30px;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("assets/send.png");
 }
 
 .button-submit:hover {
-    height: 45px;
-    width: 45px;
-    margin: 18px 30px;
-    transition: width 0.1s ease;
+  height: 45px;
+  width: 45px;
+  margin: 18px 30px;
+  transition: width 0.1s ease;
 }
 
 .button-submit:active {
-    height: 40px;
-    width: 40px;
-    margin: 20px 30px;
-    transition: width 0.1s ease;
+  height: 40px;
+  width: 40px;
+  margin: 20px 30px;
+  transition: width 0.1s ease;
 }
 
-.container-chats {
-    margin: 150px 0 0 100px;
-    font-size: larger;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.container-message {
+  height: 65vh;
+  width: auto;
+  display: block;
+  margin-left: auto;
+  border: 2px solid red;
+}
+
+.message img {
+  height: 100px;
+}
+
+.message {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 50px;
+  padding: 20px;
+  margin: 10px;
+  border: 3px solid blue;
 }

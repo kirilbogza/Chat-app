@@ -1,11 +1,13 @@
 import { useState } from "react";
 
 type LayoutProps = {
-  connectionStatus: string;
   messages: string[];
+  emitEvent: () => void;
+  userInput: string;
+  setUserInput: (value: string) => void;
 };
 
-function Layout({ connectionStatus, messages }: LayoutProps) {
+function Layout({ messages, emitEvent, userInput, setUserInput }: LayoutProps) {
   const [isSideBarOpen, setSideBarOpen] = useState(false);
   const [buttonUnactive, setButtonActive] = useState(false);
 
@@ -18,6 +20,7 @@ function Layout({ connectionStatus, messages }: LayoutProps) {
     <>
       <header></header>
       <main className="app">
+        {/* sidebar */}
         <div
           className="sidebar"
           style={{
@@ -26,34 +29,46 @@ function Layout({ connectionStatus, messages }: LayoutProps) {
             flexDirection: isSideBarOpen ? "row-reverse" : "row-reverse",
           }}
         >
-          {/* <p>{connectionStatus}</p> */}
-
           <button onClick={openSidebar} className="button-sidebar">
             {buttonUnactive ? "→ ←" : "← →"}
           </button>
+
           <div
             style={{
               display: isSideBarOpen ? "block" : "none",
             }}
           >
-            <div className="container-chats">
+            <div className="container-chat-list">
               <p>chats</p>
               <p>________</p>
             </div>
           </div>
         </div>
+        {/* container */}
         <div className="container-chat">
-          <div className="message">
-            {messages.map((message) => (
-              <p>{message}</p>
+          <div className="container-message">
+            {messages.map((message, index) => (
+              <div key={index} className="message">
+                <img
+                  src="https://www.pngall.com/wp-content/uploads/5/Profile-Male-Transparent.png"
+                  alt=""
+                />
+                <p>{message}</p>
+              </div>
             ))}
           </div>
           <div className="container-input">
-            <input type="text" placeholder="Write your message" />
+            <input
+              type="text"
+              placeholder="Write your message"
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+            />
             <button
               className="button-submit"
               type="submit"
               title="none"
+              onClick={emitEvent}
             ></button>
           </div>
         </div>
